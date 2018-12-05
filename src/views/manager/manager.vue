@@ -6,7 +6,7 @@
                                                                                       icon="plus">新增管理员</Button></span>
             </div>
             <div style="float: right">
-                <Input v-model="keywords" placeholder="请输入管理员账号、手机号" style="width: 200px"/>
+                <Input v-model="keywords" placeholder="请输入管理员手机号" style="width: 200px"/>
                 <span @click="init" style="margin: 0 10px;"><Button type="primary" icon="search">搜索</Button></span>
                 <span @click="batchDel" v-if="isAuth('sys:manager:delete')" style="margin: 0"><Button type="error"
                                                                                                       icon="trash-a">批量删除</Button></span>

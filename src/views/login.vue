@@ -5,7 +5,7 @@
 
 <template>
 
-    <div class="login fade" id="login" @keydown.enter="handleSubmit" ref="login" v-bind:class="[{imgUrl1:bg1},{imgUrl2:bg2},{imgUrl3:bg3},{imgUrl4:bg4}]">
+    <div class="login" id="login" @keydown.enter="handleSubmit" ref="login">
         <div class="login-con">
             <Card :bordered="false">
                 <p slot="title">
@@ -43,6 +43,8 @@
 
 <script>
     import API from '@/api';
+    import '../libs/jquery-2.1.0'
+    import '../libs/supersized.3.2.7.min'
 
     export default {
         data() {
@@ -59,21 +61,45 @@
                     password: [
                         {required: true, message: '密码不能为空', trigger: 'blur'}
                     ]
-                },
-                bg1:false,
-                bg2:false,
-                bg3:false,
-                bg4:false,
-                i:0
+                }
             };
         },
 
         mounted: function () {
-            this.bg1 = true;
+            this.init();
         },
 
         methods: {
 
+            init(){
+                $.supersized({
+
+                    // Functionality
+                    slide_interval     : 4000,    // Length between transitions
+                    transition         : 1,    // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+                    transition_speed   : 1000,    // Speed of transition
+                    performance        : 1,    // 0-Normal, 1-Hybrid speed/quality, 2-Optimizes image quality, 3-Optimizes transition speed // (Only works for Firefox/IE, not Webkit)
+
+                    // Size & Position
+                    min_width          : 0,    // Min width allowed (in pixels)
+                    min_height         : 0,    // Min height allowed (in pixels)
+                    vertical_center    : 1,    // Vertically center background
+                    horizontal_center  : 1,    // Horizontally center background
+                    fit_always         : 0,    // Image will never exceed browser width or height (Ignores min. dimensions)
+                    fit_portrait       : 1,    // Portrait images will not exceed browser height
+                    fit_landscape      : 0,    // Landscape images will not exceed browser width
+
+                    // Components
+                    slide_links        : 'blank',    // Individual links for each slide (Options: false, 'num', 'name', 'blank')
+                    slides             : [    // Slideshow Images
+                        {image : 'src/images/1.jpg'},
+                        {image : 'src/images/2.jpg'},
+                        {image : 'src/images/3.jpg'},
+                        {image : 'src/images/4.jpg'}
+                    ]
+
+                });
+            },
             handleSubmit() {
                 this.$refs.loginForm.validate((valid) => {
                     if (valid) {
@@ -112,7 +138,3 @@
         }
     };
 </script>
-
-<style>
-
-</style>
