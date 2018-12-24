@@ -78,7 +78,7 @@
                 keywords: '',
                 totalCount: 0,
                 pageSize: 10,
-                pageIndex: 0,
+                pageIndex: 1,
                 selection: [], //多选选中的值
                 editManagerModal: false, // 新增模态框
                 saveLoading: false,
@@ -252,7 +252,7 @@
                 }
             },
             pageChange(val) { //页数改变监听
-                this.pageIndex = (val - 1) * 10;
+                this.pageIndex = val;
                 this.init();
             },
             sizeChange(size) { //每页个数改变监听
